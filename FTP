@@ -1,1 +1,14 @@
+FTP (FILE TRANFER PROTOCOL) 
+- FTP la giao thuc dung de tai len va tai xuong tep qua mang
+- FTP su dung TCP, hoat dong o port 21 (dieu khien) va port 20 (truyen du lieu)
+- Co 2 che do:
+  + Active FTP: Server chu dong gui du lieu ve client
+  + Passive FTP: Client chu dong ket noi de tranh bi Firewall chan
+FTP thuong yeu cau tai khoan dang nhap, nhung doi khi co Anonymous FTP cho phep truy cap khong can mat khau
+FTP truyen du lieu dang van ban thuan nen co the bi nghe len
+
+TFTP la phien bang don gian cua FTP
+TFTP dung UDP thay vi TCP nen khong dang tin cay
+TFTP khong ho tro xac thuc nguoi dung va mat khau
+TFTP thuong chi dung trong mang noi bo an toan hon vi bao mat yeu
 
